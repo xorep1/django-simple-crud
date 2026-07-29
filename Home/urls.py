@@ -1,7 +1,10 @@
+from django.views.generic import TemplateView
 from django.urls import path
 from .views import *
 
 urlpatterns = [
+    path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    
     path("books/", view_books, name="books"),
     path("books/add/", view_add_book, name="add_book"),
     path("books/remove/<int:id>/", view_remove_book, name="remove_book"),

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Simple CRUD — مستندات پروژه</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            line-height: 1.8;
+            padding: 40px 20px;
+            max-width: 860px;
+            margin: auto;
+            color: #222;
+            background: #fafafa;
+        }
+        h1 { font-size: 28px; margin-bottom: 6px; }
+        h2 { border-bottom: 2px solid #eee; padding-bottom: 8px; margin-top: 40px; }
+        p.subtitle { color: #666; margin-top: 0; }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Courier New", monospace;
+            direction: ltr;
+            display: inline-block;
+        }
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 10px 12px;
+            text-align: right;
+        }
+        th { background: #f4f4f4; }
+        .btn {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-left: 8px;
+            margin-top: 10px;
+        }
+        .btn:hover { background: #0056b3; }
+        .btn.secondary { background: #6c757d; }
+        .btn.secondary:hover { background: #545b62; }
+        .warning {
+            background: #fff8e1;
+            border-right: 4px solid #ffc107;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin: 16px 0;
+        }
+        ul { padding-right: 20px; }
+        footer { margin-top: 50px; color: #888; font-size: 14px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <h1>🚀 Django Simple CRUD</h1>
+    <p class="subtitle">یک پروژه‌ی نمونه با Django برای مدیریت کتاب‌ها و نویسندگان (عملیات CRUD کامل)</p>
+
+    <p>
+        <a class="btn" href="{% url 'books' %}">📚 مشاهده کتاب‌ها</a>
+        <a class="btn" href="{% url 'authors' %}">✍️ مشاهده نویسندگان</a>
+        <a class="btn secondary" href="/admin/">⚙️ پنل مدیریت</a>
+    </p>
+
+   
+    <h2>🔗 مسیرها (Endpoints)</h2>
+    <table>
+        <tr><th>مسیر</th><th>کاربرد</th></tr>
+        <tr><td><code>/books/</code></td><td>نمایش لیست کتاب‌ها</td></tr>
+        <tr><td><code>/books/add/</code></td><td>افزودن کتاب جدید</td></tr>
+        <tr><td><code>/books/update/&lt;id&gt;/</code></td><td>ویرایش کتاب</td></tr>
+        <tr><td><code>/books/remove/&lt;id&gt;/</code></td><td>حذف کتاب</td></tr>
+        <tr><td><code>/authors/</code></td><td>نمایش لیست نویسندگان</td></tr>
+        <tr><td><code>/authors/add/</code></td><td>افزودن نویسنده جدید</td></tr>
+        <tr><td><code>/authors/update/&lt;id&gt;/</code></td><td>ویرایش نویسنده</td></tr>
+        <tr><td><code>/authors/remove/&lt;id&gt;/</code></td><td>حذف نویسنده</td></tr>
+        <tr><td><code>/admin/</code></td><td>پنل مدیریت جنگو</td></tr>
+    </table>
+
+    <h2>🧭 نحوه‌ی استفاده</h2>
+    <ul>
+        <li>برای دیدن لیست کتاب‌ها روی «مشاهده کتاب‌ها» بالا بزن یا برو به <code>/books/</code></li>
+        <li>برای افزودن کتاب جدید برو به <code>/books/add/</code> و فرم رو پر کن</li>
+        <li>برای ویرایش یا حذف، از دکمه‌های داخل صفحه‌ی لیست استفاده کن</li>
+        <li>همین جریان برای نویسندگان هم با مسیرهای <code>/authors/...</code> تکرار می‌شه</li>
+    </ul>
+
+    <div class="warning">
+        ⚠️ <b>نکته‌ی production:</b> قبل از دیپلوی واقعی حتماً <code>DEBUG=False</code> کن، <code>SECRET_KEY</code> رو عوض کن و <code>db.sqlite3</code> رو با یک دیتابیس واقعی (PostgreSQL/MySQL) جایگزین کن.
+    </div>
+
+    <footer>
+        ساخته‌شده با Django · مخزن روی <a href="https://github.com/xorep1/django-simple-crud" target="_blank">GitHub</a>
+    </footer>
+
+</body>
+</html>
