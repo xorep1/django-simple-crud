@@ -1,0 +1,128 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 8px 14px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 0.85em;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.2s ease;
+    }
+    .btn-primary {
+        background-color: #3498db;
+        color: #fff;
+    }
+    .btn-primary:hover {
+        background-color: #2980b9;
+    }
+    .btn-warning {
+        background-color: #f39c12;
+        color: #fff;
+    }
+    .btn-warning:hover {
+        background-color: #d68910;
+    }
+    .btn-danger {
+        background-color: #e74c3c;
+        color: #fff;
+    }
+    .btn-danger:hover {
+        background-color: #c0392b;
+    }
+
+    /* کانتینر برای اسکرول افقی در موبایل */
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .custom-table {
+        width: 100%;
+        min-width: 600px; /* جلوگیری از جمع شدن ستون‌ها */
+        border-collapse: collapse;
+        font-size: 0.95em;
+    }
+    .custom-table th, .custom-table td {
+        padding: 12px 15px;
+        text-align: right;
+        border-bottom: 1px solid #eee;
+    }
+    .custom-table th {
+        background-color: #f8f9fa;
+        color: #2c3e50;
+        font-weight: bold;
+    }
+    .custom-table tbody tr:hover {
+        background-color: #fcfcfc;
+    }
+    .author-badge {
+        background-color: #e8f4fd;
+        color: #2980b9;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.85em;
+        font-weight: bold;
+    }
+    .date-text {
+        color: #7f8c8d;
+        font-size: 0.85em;
+    }
+</style>
+
+<div class="page-header">
+    <h1 style="margin: 0; font-size: 1.5em; color: #2c3e50;">📚 لیست کتاب‌ها</h1>
+    <a href="{% url 'add_book' %}" class="btn btn-primary">➕ افزودن کتاب جدید</a>
+</div>
+
+<!-- کانتینر اسکرول افقی برای موبایل -->
+<div class="table-container">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>عنوان</th>
+                <th>توضیحات</th>
+                <th>نویسنده</th>
+                <th>آخرین بروزرسانی</th>
+                <th style="width: 130px; text-align: center;">عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td style="font-weight: bold;">{{ book.title }}</td>
+                <td style="color: #555;">{{ book.description|default:"—"|truncatewords:12 }}</td>
+                <td><span class="author-badge">{{ book.author.name }}</span></td>
+                <td><span class="date-text">{{ book.updated}}</span></td>
+                <td style="text-align: center; white-space: nowrap;">
+                    <a href="{% url 'update_book' book.id %}" class="btn btn-warning">ویرایش</a>
+                    
+                    <form action="{% url 'remove_book' book.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('آیا از حذف این کتاب مطمئن هستید؟')">حذف</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align: center; color: #888; padding: 30px;">
+                    هیچ کتابی یافت نشد. <a href="{% url 'add_book' %}">اولین کتاب را اضافه کنید!</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

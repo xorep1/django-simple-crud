@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+{% block content %}
+    <h1>افزودن نویسنده جدید</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">ذخیره</button>
+    </form>
+
+    <br>
+    <a href="{% url 'authors' %}">بازگشت به لیست</a>
+{% endblock %}

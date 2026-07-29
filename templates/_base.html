@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}سیستم مدیریت کتابخانه{% endblock %}</title>
+    
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            margin: 20px 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        nav{
+            display: flex;
+            justify-content: center;
+            gap: 25%
+            
+        }
+        nav a {
+            
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold; 
+        }
+        nav a:hover {
+            color: #3498db;
+        }
+        main {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            min-height: 400px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <!-- هدر و منوی اصلی -->
+    <header>
+        <nav>
+            <a href="{% url 'authors' %}">👨‍💻 نویسندگان</a>
+            <a href="{% url 'books' %}">📚 کتاب‌ها</a>
+            
+        </nav>
+    </header>
+
+    <!-- محتوای صفحات دیگر اینجا قرار می‌گیرد -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- فوتر -->
+    <footer>
+        <p>© مدیریت کتابخانه و نویسندگان </p>
+    </footer>
+
+</body>
+</html>
