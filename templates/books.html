@@ -103,7 +103,7 @@
             {% for book in books %}
             <tr>
                 <td style="font-weight: bold;">{{ book.title }}</td>
-                <td style="color: #555;">{{ book.description|default:"—"|truncatewords:12 }}</td>
+                <td style="color: #555;">{{ book.description|default:"—"|truncatechars:30 }}</td>
                 <td><span class="author-badge">{{ book.author.name }}</span></td>
                 <td><span class="date-text">{{ book.updated}}</span></td>
                 <td style="text-align: center; white-space: nowrap;">
